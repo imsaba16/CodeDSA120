@@ -1,9 +1,13 @@
 package day1
 
+import kotlin.collections.mutableListOf
+
 fun main() {
     getLargestNumber()
     sumOfAllElement()
     println("Find Number in Array: ${findNumberInArray(9)}")
+    reverseAnArray()
+    println(fibonocci(8))
 }
 
 fun findFirstElement() {
@@ -64,4 +68,32 @@ fun findNumberInArray(target: Int) {
     }
 
     println("method2: ${binarySearch(list, 7)}")
+}
+
+//Medium Problems
+fun reverseAnArray() {
+    //method 1
+    val arr = intArrayOf(3, 5, 2, 5, 6, 7, 2, 9, 6, 1, 0)
+    val temp = mutableListOf<Int>()
+    for (i in arr.size - 1 downTo 0) {
+        temp.add(arr[i])
+    }
+    println(temp)
+    //method 2
+    var left = 0
+    var right = arr.size - 1
+    while (left < right) {
+        var temp = arr[left]
+        arr[left] = arr[right]
+        arr[right] = temp
+        left++
+        right--
+    }
+    println(arr.toList())
+}
+
+//Hard
+fun fibonocci(n: Int): Int {
+    if (n <= 1) return n
+    return fibonocci(n -1) + fibonocci(n -2)
 }
