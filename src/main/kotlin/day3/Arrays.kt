@@ -7,6 +7,15 @@ fun main() {
     testUpdate()
     insertAtFirst()
     deleteElementByValue()
+    sumOfAllElements()
+    smallestAndLargest()
+    reverseAnArray()
+    countOccurrence()
+    checkIfArrayContainsElement()
+    moveEvenNumbersToStart()
+    findSecondLargestElement()
+    rotateLeftByK()
+    rotateRightByK()
 }
 
 fun testInsert() {
@@ -107,4 +116,155 @@ fun deleteElementByValue() {
         }
     }
     println(dupe.joinToString())
+}
+
+fun sumOfAllElements() {
+    val array = intArrayOf(1, 2, 3, 4, 5)
+    var sum = 0
+    for (e in array) {
+        sum += e
+    }
+    println("Sum: $sum")
+}
+
+fun smallestAndLargest() {
+    val array = intArrayOf(7, 2, 9, 1, 5, -10, -20, 100, 394, 4245, -3294)
+    var smallest = array[0]
+    var largest = array[0]
+
+    for (e in array) {
+        if (e < smallest) {
+            smallest = e
+        }
+        if (e > largest) {
+            largest = e
+        }
+    }
+    println("Smallest: $smallest || Largest: $largest")
+}
+
+fun reverseAnArray() {
+    val array = intArrayOf(1, 2, 3, 4, 5)
+    var left= 0
+    var right = array.size -1
+
+    while (left < right) {
+        val temp = array[left]
+        array[left] = array[right]
+        array[right] = temp
+        left++
+        right--
+    }
+    println(array.joinToString())
+}
+
+fun countOccurrence() {
+    val array = intArrayOf(1, 2, 3, 2, 4, 2)
+    val target = 2
+    var count = 0
+    for (element in array) {
+        if (element == target)
+            count++
+    }
+    println("Count: $count")
+}
+
+fun checkIfArrayContainsElement() {
+    val array = intArrayOf(4, 7, 1, 9)
+    val value = 7
+    for(element in array) {
+        if ( element == value) {
+            println("Value is Available")
+            break
+        }
+    }
+}
+
+fun moveEvenNumbersToStart() {
+    // var left = 0
+    // var right = array.size -1
+
+    // while(left < right) {
+    //     if (array[left] % 2 == 0) {
+    //         left++
+    //     }
+    //     if(array[right] % 2 != 0) {
+    //         right--
+    //     }
+    //     if(array[left] % 2 != 0 && array[right]% 2 == 0) {
+    //         val temp = array[left]
+    //         array[left] = array[right]
+    //         array[right] = temp
+    //         left++
+    //         right--
+    //     }
+    // }
+    // println(array.joinToString())
+
+    //Issue with a code fix later
+    val array = intArrayOf(1, 2, 3, 4, 5, 6)
+    var index = 0
+    for (i in array.indices) {
+        if (array[i] % 2 == 0) {
+            if (i != index) {
+                val temp = array[i]
+                array[i] = array[index]
+                array[index] = temp
+            }
+            index++
+        }
+    }
+    println(array.joinToString())
+}
+
+fun findSecondLargestElement() {
+    val array = intArrayOf(12, 35, 1, 10, 34, 1)
+    var largest = Int.MIN_VALUE
+    var secondLargest = Int.MIN_VALUE
+
+    for(i in array) {
+        if (i > largest) {
+            largest = i
+        } else if (i < largest && i > secondLargest) {
+            secondLargest = i
+        }
+    }
+
+    println("Largest: $largest || Second: $secondLargest")
+}   
+
+fun rotateLeftByK() {
+    val array = intArrayOf(1, 2, 3, 4, 5)
+    var k = 2
+    val n = array.size
+    k = k % n
+    rotate(array, 0, k -1)
+    rotate(array, k, n -1)
+    rotate(array, 0, n-1)
+    println(array.joinToString())    
+}
+
+fun rotateRightByK() {
+    val array = intArrayOf(1, 2, 3, 4, 5)
+    var k = 2
+    val n = array.size
+    k = k%n
+    rotate(array, 0, n - 1)
+    rotate(array, 0, k - 1) 
+    rotate(array, k, n - 1)
+    println(array.joinToString())
+    println(2%5)
+}
+
+fun rotate(arr: IntArray, start: Int, end: Int) {
+    var left = start
+    var right = end
+
+    while(left< right) {
+        val temp = arr[left]
+        arr[left] = arr[right]
+        arr[right] = temp
+        left++
+        right--
+    }
 }
