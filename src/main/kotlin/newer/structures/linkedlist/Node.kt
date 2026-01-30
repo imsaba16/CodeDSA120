@@ -4,3 +4,7 @@ class Node<T>(
     var data: T,
     var next: Node<T>? = null
 )
+
+fun main() {
+    println("Hello World")
+}

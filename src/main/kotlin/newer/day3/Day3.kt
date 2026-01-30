@@ -20,6 +20,7 @@ fun fibonacci(n: Int): Int {
 fun randomAccess(n: Array<Int>): Int {
     val randomIndx = Random.nextInt(0, n.size)
     val randomNumber = n[randomIndx]
+    Int.MAX_VALUE
     return randomNumber
 }
 
