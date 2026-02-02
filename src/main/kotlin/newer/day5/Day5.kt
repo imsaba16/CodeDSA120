@@ -2,9 +2,12 @@ package newer.day5
 
 fun main() {
     val arr: IntArray = intArrayOf(2, 1, 5, 3, 8, 6, 92, 46, 73, 12, 74, 98, 73, 67)
-
-    mergeSort(arr, 0, arr.lastIndex)
-    println("Sorted: ${arr.joinToString()}")
+    val arrMS = arr.copyOf()
+    mergeSort(arrMS, 0, arr.lastIndex)
+    println("Sorted: ${arrMS.joinToString()}")
+    val arrQS = arr.copyOf()
+    quickSort(arrQS, 0, arr.lastIndex)
+    println("QS: ${arrQS.joinToString()}")
 }
 
 private fun mergeSort(arr: IntArray, left: Int, right: Int) {
@@ -39,4 +42,32 @@ private fun merge(arr: IntArray, left: Int, mid: Int, right: Int) {
 
     while (i < n1) arr[k++] = leftArr[i++]
     while (j < n2) arr[k++] = rightArr[j++]
+}
+
+private fun quickSort(arr: IntArray, left: Int, right: Int) {
+    if (left < right) {
+        val pi = partition(arr, left, right)
+        quickSort(arr, left, pi - 1)
+        quickSort(arr, pi + 1, right)
+    }
+}
+
+private fun partition(arr: IntArray, left: Int, right: Int) : Int {
+    val pivot = arr[right]
+    var i = left - 1
+
+    for (j in left until right) {
+        if (arr[j] <= pivot) {
+            i++
+            val temp = arr[i]
+            arr[i] = arr[j]
+            arr[j] = temp
+        }
+    }
+
+    val temp = arr[i + 1]
+    arr[i + 1] = arr[right]
+    arr[right] = temp
+
+    return i + 1
 }
