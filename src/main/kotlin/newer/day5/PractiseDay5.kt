@@ -12,6 +12,7 @@ private fun mergeSort(arr: IntArray, left: Int, right: Int) {
     mergeSort(arr, left, mid)
     mergeSort(arr, mid + 1 , right)
     merge(arr, left, mid, right)
+
 }
 
 private fun merge(arr: IntArray, left: Int, mid:Int, right: Int) {
