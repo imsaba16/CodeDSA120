@@ -90,7 +90,7 @@ private fun palindromeTwoPointer(string: String) : Boolean {
 }
 
 
-fun twoSum(arr: IntArray, target: Int): IntArray {
+private fun twoSum(arr: IntArray, target: Int): IntArray {
     val hash = hashMapOf<Int, Int>()
     for (i in arr.indices) {
         val req = target - arr[i]
