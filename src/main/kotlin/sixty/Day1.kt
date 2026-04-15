@@ -8,6 +8,7 @@ fun main() {
     println(findDuplicateUsingSet(arr).joinToString())
     val count = frequencyCountUsingHashmap(arr)
     println("Keys: ${count.keys.joinToString()} || Values: ${count.values.joinToString()}")
+    println(findSecondLargestInArray(arr))
 }
 
 private fun findMinimumInArray(arr: IntArray) : Int? {
@@ -62,4 +63,22 @@ private fun frequencyCountUsingHashmap(arr: IntArray) : MutableMap<Int, Int> {
         count[arr[i]] = (count[arr[i]] ?: 0) + 1
     }
     return count
+}
+
+//Problem
+
+private fun findSecondLargestInArray(arr: IntArray) : Int? {
+    if (arr.isEmpty()) return null
+    var largest = arr[0]
+    var secondLargest = largest
+
+    for (a in 1..arr.lastIndex) {
+        if (arr[a] > largest) {
+            secondLargest = largest
+            largest = arr[a]
+        } else if (largest > arr[a] && arr[a] > secondLargest) {
+            secondLargest = arr[a]
+        }
+    }
+    return secondLargest
 }
