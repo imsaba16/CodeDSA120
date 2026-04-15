@@ -7,6 +7,7 @@ fun main() {
     twoSlowPointers(arr)
     println(arr.joinToString())
     println(twoPointerSlidingWindow(arr, 29))
+    println(twoPointersFindTwoNumbersSum(arr, 10).joinToString())
 }
 
 private fun twoSum(arr: IntArray, target: Int) : IntArray {
@@ -49,4 +50,21 @@ private fun twoPointerSlidingWindow(arr: IntArray, target: Int): Int {
         maxLength = maxOf(maxLength, currentLength)
     }
     return maxLength
+}
+
+private fun twoPointersFindTwoNumbersSum(arr: IntArray, target: Int) : IntArray {
+    var i = 0
+    var j = arr.lastIndex
+
+    while (i < j) {
+        if (arr[i] + arr[j] > target) {
+            j--
+        } else if (arr[i] + arr[j] < target) {
+            i++
+        } else {
+            return intArrayOf(arr[i], arr[j])
+        }
+    }
+
+    return intArrayOf()
 }
