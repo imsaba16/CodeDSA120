@@ -17,6 +17,19 @@ fun main() {
         .also { println("B: $it") }
 
     println("C: $result")
+    print(data = "Hello") {
+        println(it)
+    }
+    sum(3, 5) {
+        println(it)
+    }
+    sub(5, 3) {
+        println(it)
+    }
+    mul(5, 3) {
+        println(it)
+    }
+    println(5 div 3)
 }
 
 private fun process(input: String?) : String {
@@ -47,4 +60,25 @@ private fun getValidLength(input: String?): Int {
     if (input.isNullOrBlank()) return 0
     val trimmed  = input.trim()
      return if (trimmed.length > 10) 10 else trimmed.length
+}
+
+
+inline fun print(data: String, value: (String) -> Unit) {
+    value(data)
+}
+
+inline fun sum(a: Int, b: Int, value: (Int) -> Unit) {
+    value(a + b)
+}
+
+inline fun sub(a: Int, b: Int, noinline value: (Int) -> Unit) {
+    value(a - b)
+}
+
+inline fun mul(a: Int, b: Int, crossinline value: (Int) -> Unit) {
+    value(a * b)
+}
+
+infix fun Int.div(a: Int) : Int {
+    return this / a
 }
